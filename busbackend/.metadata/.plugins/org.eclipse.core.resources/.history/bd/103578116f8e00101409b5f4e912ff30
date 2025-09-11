@@ -1,0 +1,2 @@
+The type java.lang.Enum cannot be resolved. It is indirectly referenced from required type 
+org.springframework.web.bind.annotation.RequestMethod

@@ -1,0 +1,12 @@
+package com.klef.dev.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import com.klef.dev.entity.Bus;
+
+@Repository
+public interface BusRepository extends JpaRepository 
+{
+    Bus findByBusNumber(String busNumber);
+    Bus findByRoute(String route);
+}

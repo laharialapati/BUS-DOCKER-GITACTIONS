@@ -1,0 +1,12 @@
+package com.klef.dev.service;
+
+import com.klef.dev.entity.Bus;
+
+public class BusService {
+
+	public Bus addBus(Bus bus) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

@@ -1,0 +1,74 @@
+pacckage com.klef.dev.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+import com.klef.dev.entity.Bus;
+import com.klef.dev.service.BusService;
+
+@RestController
+@RequestMapping("/busapi/")
+@CrossOrigin(origins = "*")
+public class BusController {
+
+    @Autowired
+    private BusService busService;
+
+    @GetMapping("/")
+    public String home() {
+        return "Bus Service API is running!";
+    }
+
+    // ✅ Add Bus
+    @PostMapping("/add")
+    public ResponseEntity<Bus> addBus(@RequestBody Bus bus) {
+        Bus savedBus = busService.addBus(bus);
+        return new ResponseEntity<>(savedBus, HttpStatus.CREATED);
+    }
+
+    // ✅ Get All Buses
+    @GetMapping("/all")
+    public ResponseEntity<List<Bus>> getAllBuses() {
+        List<Bus> buses = busService.getAllBuses();
+        return new ResponseEntity<>(buses, HttpStatus.OK);
+    }
+
+    // ✅ Get Bus by ID
+    @GetMapping("/get/{id}")
+    public ResponseEntity<?> getBusById(@PathVariable int id) {
+        Bus bus = busService.getBusById(id);
+        if (bus != null) {
+            return new ResponseEntity<>(bus, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Bus with ID " + id + " not found.", HttpStatus.NOT_FOUND);
+        }
+    }
+
+    // ✅ Update Bus
+    @PutMapping("/update")
+    public ResponseEntity<?> updateBus(@RequestBody Bus bus) {
+        Bus existing = busService.getBusById(bus.getId());
+        if (existing != null) {
+            Bus updatedBus = busService.updateBus(bus);
+            return new ResponseEntity<>(updatedBus, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Cannot update. Bus with ID " + bus.getId() + " not found.", HttpStatus.NOT_FOUND);
+        }
+    }
+
+    // ✅ Delete Bus
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteBus(@PathVariable int id) {
+        Bus existing = busService.getBusById(id);
+        if (existing != null) {
+            busService.getBusById(id);
+            return new ResponseEntity<>("Bus with ID " + id + " deleted successfully.", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Cannot delete. Bus with ID " + id + " not found.", HttpStatus.NOT_FOUND);
+        }
+    }
+}
