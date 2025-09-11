@@ -29,9 +29,9 @@ pipeline {
         // ===== BACKEND BUILD =====
         stage('Build Backend') {
             steps {
-                dir('busbackend') {
-                    bat 'mvn clean package'
-                }
+                dir('busbackend/BusServiceDemoProject') {
+                bat 'mvn clean package'
+}
             }
         }
 
