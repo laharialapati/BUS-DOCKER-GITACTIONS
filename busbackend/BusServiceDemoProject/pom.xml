@@ -65,7 +65,7 @@
     </dependencies>
 
    <build>
-	<finalName>busmanagmentapi</finalName>
+	<finalName>busmanagementapi</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
