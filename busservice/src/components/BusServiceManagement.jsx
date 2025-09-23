@@ -51,21 +51,25 @@ const BusServiceManagement = () => {
   };
 
   const addBus = async () => {
-    if (!validateForm()) return;
+  if (!validateForm()) return;
 
-    const busData = { ...bus };
-    delete busData.id;
-
-    try {
-      await axios.post(`${baseUrl}/add`, busData);
-      setMessage('Bus added successfully.');
-      fetchAllBuses();
-      resetForm();
-    } catch (error) {
-      setMessage('Error adding bus.');
-      console.error(error.response?.data || error.message);
-    }
+  // Ensure we have a unique ID (you can use timestamp or random)
+  const busData = { 
+    ...bus,
+    id: Date.now()  // simple unique id (milliseconds)
   };
+
+  try {
+    await axios.post(`${baseUrl}/add`, busData);
+    setMessage('Bus added successfully.');
+    fetchAllBuses();
+    resetForm();
+  } catch (error) {
+    setMessage('Error adding bus.');
+    console.error(error.response?.data || error.message);
+  }
+};
+
 
   const updateBus = async () => {
     if (!validateForm()) return;
