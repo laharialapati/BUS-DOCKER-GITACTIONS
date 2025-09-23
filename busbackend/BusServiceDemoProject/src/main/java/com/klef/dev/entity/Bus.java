@@ -11,6 +11,7 @@ public class Bus {
     
     @Id
     @Column(name = "bus_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "bus_number", nullable = false, unique = true, length = 20)
