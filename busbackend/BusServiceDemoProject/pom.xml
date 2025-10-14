@@ -14,7 +14,6 @@
     <groupId>com.klef</groupId>
     <artifactId>BusServiceDemoProjectss</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
 
     <name>BusServiceDemoProject</name>
     <description>Bus Service Management Project</description>
@@ -65,7 +64,6 @@
     </dependencies>
 
    <build>
-	<finalName>busmanagementapi</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
