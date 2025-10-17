@@ -11,9 +11,15 @@ import com.klef.dev.entity.Bus;
 import com.klef.dev.service.BusService;
 
 @RestController
-@RequestMapping("/busapi/")
-@CrossOrigin(origins = "*")
+@RequestMapping("/busapi")
 public class BusController {
+
+    @PostMapping("/add")
+    public ResponseEntity<String> addBus(@RequestBody Bus bus) {
+        System.out.println(bus); // check if data received
+        return ResponseEntity.ok("Bus added successfully!");
+    }
+}
 
     @Autowired
     private BusService busService;
