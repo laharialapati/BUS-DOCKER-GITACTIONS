@@ -12,18 +12,13 @@ import com.klef.dev.service.BusService;
 
 @RestController
 @RequestMapping("/busapi")
+@CrossOrigin(origins = "http://localhost:3000") // allow frontend requests
 public class BusController {
-
-    @PostMapping("/add")
-    public ResponseEntity<String> addBus(@RequestBody Bus bus) {
-        System.out.println(bus); // check if data received
-        return ResponseEntity.ok("Bus added successfully!");
-    }
-}
 
     @Autowired
     private BusService busService;
 
+    // Home check
     @GetMapping("/")
     public String home() {
         return "Bus Service API is running!";
@@ -71,7 +66,7 @@ public class BusController {
     public ResponseEntity<String> deleteBus(@PathVariable int id) {
         Bus existing = busService.getBusById(id);
         if (existing != null) {
-            busService.getBusById(id);
+            busService.deleteBus(id);
             return new ResponseEntity<>("Bus with ID " + id + " deleted successfully.", HttpStatus.OK);
         } else {
             return new ResponseEntity<>("Cannot delete. Bus with ID " + id + " not found.", HttpStatus.NOT_FOUND);
